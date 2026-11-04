@@ -1,0 +1,524 @@
+# Dados da página /diagnostico/ (assets/js/diagnostico.js).
+#
+# Fluxo: onde começou → como é → fase da planta → causas prováveis, em ordem.
+# Cada opção de "como" lista as causas (ids de `causas`), da mais para a menos provável.
+# `fim_flora` (opcional) é colocado na frente quando a planta está nas últimas semanas.
+# Fotos: só fotos reais, com crédito. Caminhos sem o domínio, como no resto do site.
+# Causa sem foto da comunidade (nem caso com data-causa) mostra o aviso "Procuramos foto";
+# `procura_foto: false` desliga o aviso.
+
+onde:
+  - id: baixo
+    titulo: Folhas de baixo (as mais velhas)
+    dica: O problema começou nas folhas grandes da parte de baixo e vai subindo.
+    como:
+      - id: amarela-toda
+        titulo: A folha inteira vai clareando e amarelando, por igual
+        causas: [nitrogenio, rega-excesso, ph]
+        fim_flora: [fade]
+      - id: entre-nervuras
+        titulo: Amarela entre as nervuras, e as nervuras continuam verdes
+        causas: [magnesio, ph, potassio]
+        fim_flora: [fade]
+      - id: bordas
+        titulo: Bordas e pontas amarelando e secando (cor de palha ou ferrugem), avançando para dentro
+        causas: [potassio, magnesio, excesso-micro, excesso-sais]
+        fim_flora: [fade]
+      - id: manchas
+        titulo: Manchas ou pontinhos escuros, verde-oliva ou marrons, e áreas secas na folha
+        causas: [fosforo, calcio, ph, potassio]
+
+  - id: cima
+    titulo: Folhas novas, do topo ou das pontas dos galhos
+    dica: O problema aparece no crescimento novo, e as folhas de baixo estão bem.
+    como:
+      - id: nervuras-verdes
+        titulo: Folha nova amarela, com as nervuras verdes
+        causas: [ferro, manganes, ph]
+      - id: amarelo-claro
+        titulo: Amarelado claro no geral, mais forte na base dos folíolos
+        causas: [enxofre, ph, ferro]
+      - id: deformada
+        titulo: Folhas novas pequenas, torcidas ou deformadas; a ponta do galho para de crescer
+        causas: [calcio, boro, cobre]
+      - id: bordas-novas
+        titulo: Bordas das folhas novas amarelas e com partes mortas
+        causas: [zinco, calcio]
+      - id: perto-da-luz
+        titulo: Só o topo, perto da luz, está amarelo, esbranquiçado ou queimado
+        causas: [luz, calor]
+
+  - id: toda
+    titulo: A planta toda, ou não sei dizer onde começou
+    dica: Sinais que aparecem espalhados ou que não seguem a regra de baixo para cima.
+    como:
+      - id: pontas-queimadas
+        titulo: Só as pontinhas das folhas queimadas, e a planta verde-escura
+        causas: [excesso-sais]
+      - id: garra
+        titulo: Folhas muito escuras e brilhantes, com as pontas viradas para baixo (garra)
+        causas: [excesso-n, rega-excesso]
+      - id: caida
+        titulo: Folhas caídas ou murchas
+        causas: [rega-excesso, rega-falta, calor]
+      - id: canoa
+        titulo: Folhas dobradas para cima, como uma canoa
+        causas: [calor, luz]
+      - id: pontilhado
+        titulo: Pontinhos claros ou manchas prateadas, como se a folha estivesse arranhada
+        causas: [acaro, tripes]
+      - id: po-branco
+        titulo: Pó branco, como farinha, sobre as folhas
+        causas: [oidio]
+
+fases:
+  - id: veg
+    titulo: Vegetativo
+  - id: flor
+    titulo: Floração, até umas 3 semanas antes da colheita
+  - id: fim
+    titulo: Últimas 2 ou 3 semanas antes da colheita
+
+# Pergunta 4 (opcional): o substrato. As causas em `sobe` que já estão no resultado
+# vão para a frente (sem passar do fim de ciclo); a `nota` aparece no topo do resultado.
+substratos:
+  - id: solo-pronto
+    titulo: Solo pronto ou orgânico, sem adubar depois
+    sobe: [nitrogenio, potassio, fosforo, magnesio]
+    nota: "Solo pronto vem adubado para algumas semanas. Sem adubar depois, ele se esgota: falta nitrogênio no vegetativo e potássio na floração. É o caso mais comum de deficiência de verdade."
+    link: /substrato/
+    ph_drenagem: { min: 5.5, max: 6.5 }
+  - id: solo-mineral
+    titulo: Solo ou turfa, com adubo mineral
+    sobe: [ph, excesso-sais, excesso-n, excesso-micro]
+    nota: "Com adubo mineral, excesso de sais e pH fora da faixa são mais comuns que falta. Meça o pH e a EC do que sai pelo fundo antes de mexer na dose."
+    link: /ph-ec/#medir-o-ec-da-drenagem
+    ph_drenagem: { min: 5.5, max: 6.5 }
+  - id: coco
+    titulo: Fibra de coco
+    sobe: [calcio, magnesio, ph, excesso-sais]
+    nota: "A fibra de coco segura cálcio e magnésio e solta potássio e sódio. Falta de cálcio e de magnésio é a mais comum: use Cal-Mag e confira se o coco foi tamponado."
+    link: /fibra-de-coco/
+    ph_drenagem: { min: 5.5, max: 6.5 }
+  - id: hidro
+    titulo: Hidroponia
+    sobe: [ph, ferro, manganes, excesso-sais]
+    nota: "Na hidroponia, o pH muda rápido e trava primeiro os micronutrientes, como ferro e manganês. Confira o pH e a EC da solução todo dia."
+    link: /hidroponia/
+    ph_drenagem: { min: 5.5, max: 6.5 }
+  - id: nao-sei
+    titulo: Não sei ou outro
+    sobe: []
+
+# Medições opcionais (pH e EC). Ajustam a ordem das causas no resultado.
+# Faixa do pH do substrato (na drenagem): 5,5 a 6,5, recomendada por VEAZIE et al. (2025), igual à página pH e EC.
+# ph_padrao vale quando o substrato não foi informado; cada substrato pode ter a sua `ph_drenagem`.
+medicoes:
+  ph_padrao: { min: 5.5, max: 6.5 }
+  ph_fora: "O pH da drenagem ({valor}) está fora da faixa de {min} a {max} (Veazie et al., 2025). Com o pH assim, a raiz trava a absorção, e a planta mostra deficiência mesmo com adubo no vaso. Corrija o pH antes de mexer no adubo."
+  ph_ok: "O pH da drenagem ({valor}) está dentro da faixa: o travamento por pH fica menos provável."
+  ec_acumulo: "A EC da drenagem ({drenagem}) está bem acima da EC da rega ({rega}): os sais estão se acumulando no substrato. Regue com mais volume, até escorrer bastante, ou baixe a dose."
+  ec_fome: "A EC da drenagem ({drenagem}) está bem abaixo da EC da rega ({rega}): a planta está consumindo tudo e pode estar com fome. Suba a dose aos poucos."
+  ec_alta: "A EC da drenagem ({drenagem}) está alta: há sais demais no substrato. Regue com água pura ou adubo fraco até a EC baixar."
+  ec_baixa: "A EC da drenagem ({drenagem}) está muito baixa: sobra pouco nutriente no substrato."
+  # causas que sobem quando a planta está com fome
+  fome: [nitrogenio, potassio, magnesio, fosforo, calcio, enxofre]
+  # causas que sobem quando há sais demais
+  acumulo: [excesso-sais, excesso-n, excesso-micro]
+  link: /ph-ec/#medir-o-ec-da-drenagem
+
+# Fotos de estudos (CC BY 4.0, recortes das figuras originais):
+#   llewellyn: LLEWELLYN et al. (2023), Plants, em boa resolução (N, P, K, Ca, Mg, S)
+#   cockson: COCKSON et al. (2019), Applied Sciences, em baixa resolução (micronutrientes e excessos)
+# Fotos da comunidade: as mesmas usadas nas outras páginas, com o mesmo crédito.
+creditos:
+  llewellyn:
+    texto: "Llewellyn et al. (2023), Plants"
+    url: "https://doi.org/10.3390/plants12030422"
+    licenca: CC BY 4.0
+    licenca_url: "https://creativecommons.org/licenses/by/4.0/"
+  cockson:
+    texto: "Cockson et al. (2019), Applied Sciences"
+    url: "https://doi.org/10.3390/app9204432"
+    licenca: CC BY 4.0
+    licenca_url: "https://creativecommons.org/licenses/by/4.0/"
+
+# Tabela "Sintoma por nutriente" da página Deficiências (lê `tabela` de cada causa).
+# Mude os sintomas lá em `causas`: a tabela e o diagnóstico mostram o mesmo texto.
+tabela_nutrientes:
+  - causa: nitrogenio
+    nome: Nitrogênio
+    sigla: N
+  - causa: fosforo
+    nome: Fósforo
+    sigla: P
+  - causa: potassio
+    nome: Potássio
+    sigla: K
+  - causa: magnesio
+    nome: Magnésio
+    sigla: Mg
+  - causa: calcio
+    nome: Cálcio
+    sigla: Ca
+  - causa: enxofre
+    nome: Enxofre
+    sigla: S
+  - causa: ferro
+    nome: Ferro
+    sigla: Fe
+  - causa: manganes
+    nome: Manganês
+    sigla: Mn
+  - causa: zinco
+    nome: Zinco
+    sigla: Zn
+  - causa: cobre
+    nome: Cobre
+    sigla: Cu
+  - causa: boro
+    nome: Boro
+    sigla: B
+  - nome: Molibdênio
+    sigla: Mo
+    tabela:
+      onde: "—"
+      comeco: "Nenhum sintoma em 9 semanas sem o nutriente"
+      avanca: "—"
+
+causas:
+  nitrogenio:
+    nome: Falta de nitrogênio (N)
+    tabela:
+      onde: "Folhas de baixo, subindo"
+      comeco: "Folha toda vai ficando verde-clara e amarela"
+      avanca: "Folhas inteiras amarelas, que secam e caem"
+    porque: É o nutriente que mais falta. A planta tira o nitrogênio das folhas velhas para mandar às novas, então o amarelo começa embaixo e sobe, por igual, na folha toda.
+    fazer: Suba a dose do adubo aos poucos (veja a EC da rega e da drenagem). No fim da floração, é normal e não precisa corrigir.
+    confirmar: As folhas novas continuam verdes e o amarelo para de subir em uma semana.
+    link: /deficiencias/#sintoma-por-nutriente
+    fotos:
+      - src: /assets/img/wiki/folhas-amarelando-33dvrujws6gh1.jpg
+        alt: Planta jovem com as folhas de baixo verde-claras e amareladas e as de cima mais verdes
+        credito: u/Kahryel
+        credito_url: https://www.reddit.com/user/Kahryel
+      - src: /assets/img/wiki/deficiencia-nitrogenio-planta.jpg
+        alt: Planta em floração com as folhas de baixo amarelas e o topo verde
+        estudo: llewellyn
+      - src: /assets/img/wiki/deficiencia-nitrogenio-folhas.jpg
+        alt: Quatro folhas lado a lado, da verde-escura (saudável) à amarela (falta forte de nitrogênio)
+        estudo: llewellyn
+        inteira: true
+
+  fosforo:
+    nome: Falta de fósforo (P)
+    tabela:
+      onde: "Folhas de baixo e mais velhas"
+      comeco: "Manchas irregulares, claras ou verde-oliva"
+      avanca: "Manchas maiores e afundadas, bordas mortas, grandes áreas secas"
+    porque: Começa nas folhas velhas, com manchas irregulares verde-escuras ou cor de oliva, que depois secam e ficam marrons.
+    fazer: Confira o pH primeiro (o fósforo trava com pH fora da faixa e com frio na raiz). Depois, use um adubo de floração ou complete a dose.
+    confirmar: As manchas não aparecem nas folhas novas.
+    link: /deficiencias/#sintoma-por-nutriente
+    fotos:
+      - src: /assets/img/wiki/deficiencia-fosforo-folha.jpg
+        alt: Folha com manchas claras e irregulares espalhadas e as bordas começando a secar
+        estudo: llewellyn
+      - src: /assets/img/wiki/deficiencia-fosforo-folhas.jpg
+        alt: Quatro folhas lado a lado, da saudável à com manchas amareladas e marrons
+        estudo: llewellyn
+        inteira: true
+
+  potassio:
+    nome: Falta de potássio (K)
+    calculadora: [sulfato-potassio, extrato-algas]  # produtos de _data/doses.yml
+    tabela:
+      onde: "Folhas de baixo e mais velhas"
+      comeco: "Bordas e pontas dos folíolos amarelando, nos dentes da serrinha"
+      avanca: "Bordas cor de palha ou ferrugem (necrose) que avançam para o centro"
+    porque: Começa pelas bordas e pontas dos folíolos das folhas velhas, nos dentes da serrinha, que amarelam e depois secam, cor de palha ou ferrugem, avançando para o centro.
+    fazer: Confira o pH antes. Sulfato de potássio (mineral, aceito no orgânico), 0,15 a 0,35 g por litro na rega (cerca de 70 a 160 ppm de potássio), uma vez por semana, começando pela dose menor; ou extrato de algas na dose do rótulo (em geral 1 a 2 mL por litro); ou um adubo de floração. Se houver falta de magnésio junto, o sulfato de magnésio (0,4 a 1 g por litro) pode ir na mesma água.
+    confirmar: As bordas das folhas novas não amarelam.
+    link: /deficiencias/#potássio-na-prática
+    fotos:
+      - src: /assets/img/wiki/potassio-mizar-folha.jpg
+        alt: Folha de baixo amarelando a partir da ponta e das bordas, com pontinhos cor de ferrugem e a ponta queimada
+        credito: u/_mizar
+        credito_url: https://www.reddit.com/user/_mizar
+      - src: /assets/img/wiki/deficiencia-potassio-folha.jpg
+        alt: Folhas com as bordas dos folíolos marrons e secas, e o centro ainda verde
+        estudo: llewellyn
+      - src: /assets/img/wiki/deficiencia-potassio-planta.jpg
+        alt: Planta em floração com as bordas das folhas grandes marrons e enroladas
+        estudo: llewellyn
+
+  magnesio:
+    nome: Falta de magnésio (Mg)
+    calculadora: [sulfato-magnesio]  # produtos de _data/doses.yml
+    tabela:
+      onde: "Folhas de baixo e mais velhas"
+      comeco: "Amarelo entre as nervuras"
+      avanca: "Nervuras bem verdes sobre fundo amarelo; algumas manchas mortas"
+    porque: A folha velha amarela entre as nervuras, e as nervuras continuam verdes, como uma espinha de peixe. Depois aparecem manchas cor de ferrugem. É comum em fibra de coco, com água de chuva ou de osmose e em automáticas.
+    fazer: "Confira o pH antes (na drenagem, de 5,5 a 6,5): num estudo, em pH 7 as folhas tiveram metade do magnésio. Sulfato de magnésio (sal amargo, de farmácia), 0,4 a 1 g por litro na rega (planta pequena, 0,4 a 0,5 g), ou 1 a 2 g por litro borrifado nas folhas com a luz apagada, longe das flores. Ou um Cal-Mag na dose do rótulo."
+    confirmar: As folhas novas saem verdes. As que já amarelaram não voltam.
+    link: /deficiencias/#cálcio-e-magnésio-cal-mag-na-prática
+    fotos:
+      - src: /assets/img/wiki/magnesio-fcegvstmpxpa1.jpg
+        alt: Folha de baixo clareando entre as nervuras, que continuam verde-escuras
+        credito: u/tediousrock
+        credito_url: https://www.reddit.com/user/tediousrock
+      - src: /assets/img/wiki/magnesio-3ysjol0acibh1.jpg
+        alt: Folha de baixo amarela entre as nervuras, com pequenas manchas
+        credito: u/Character-Bathroom52
+        credito_url: https://www.reddit.com/user/Character-Bathroom52
+      - src: /assets/img/wiki/deficiencia-magnesio-folhas.jpg
+        alt: Quatro folhas lado a lado; a falta de magnésio amarela entre as nervuras, que continuam verdes
+        estudo: llewellyn
+        inteira: true
+      - src: /assets/img/wiki/deficiencia-magnesio-planta.jpg
+        alt: Planta em floração com muitas folhas amarelas no meio e no topo
+        estudo: llewellyn
+
+  calcio:
+    nome: Falta de cálcio (Ca)
+    calculadora: [nitrato-calcio]  # produtos de _data/doses.yml
+    tabela:
+      onde: "Pontas dos galhos e folhas novas; na floração, também folhas de baixo"
+      comeco: "Pontas que param de crescer e folhas novas deformadas, ou pontinhos marrons perto das bordas das folhas de baixo"
+      avanca: "Manchas e bordas mortas, ponta do galho morre e brotam mais galhos"
+    porque: "Em geral aparece no crescimento novo, porque o cálcio não se move dentro da planta: pontas dos galhos que param de crescer e folhas novas deformadas. Num estudo em hidroponia, durante a floração, apareceu primeiro como pontinhos e manchas marrons nas folhas grandes de baixo, perto das bordas."
+    fazer: Confira o pH e se o substrato não está secando demais (o cálcio só chega à planta junto com a água). Use um Cal-Mag ou nitrato de cálcio, 0,3 a 0,5 g por litro.
+    confirmar: As pontas dos galhos voltam a crescer normalmente.
+    link: /deficiencias/#cálcio-e-magnésio-cal-mag-na-prática
+    fotos:
+      - src: /assets/img/wiki/deficiencia-calcio-folha.jpg
+        alt: Folha grande com pontinhos e manchas amarelas e marrons espalhados, mais perto das bordas
+        estudo: llewellyn
+      - src: /assets/img/wiki/deficiencia-calcio-folha-2.jpg
+        alt: Folha com manchas marrons nas bordas dos folíolos
+        estudo: llewellyn
+
+  enxofre:
+    nome: Falta de enxofre (S)
+    tabela:
+      onde: "Topo e folhas que estão abrindo"
+      comeco: "Folhas novas verde-claras ou amareladas por inteiro, sem desenho das nervuras"
+      avanca: "Folhas grandes amarelo-claras em vários pontos da planta"
+    porque: As folhas do topo e as que estão abrindo ficam verde-claras ou amareladas por inteiro, sem o desenho das nervuras. Depois, folhas grandes de vários pontos da planta amarelam. É rara com adubo completo.
+    fazer: Confira o pH e use um adubo completo. O sulfato de magnésio também fornece enxofre.
+    confirmar: As folhas novas saem com a cor normal.
+    link: /deficiencias/#sintoma-por-nutriente
+    fotos:
+      - src: /assets/img/wiki/deficiencia-enxofre-folhas.jpg
+        alt: Quatro folhas lado a lado, da verde-escura à amarelo-clara por inteiro, com a placa -S
+        estudo: llewellyn
+        inteira: true
+      - src: /assets/img/wiki/deficiencia-enxofre-planta.jpg
+        alt: Planta em floração com folhas amarelo-claras espalhadas
+        estudo: llewellyn
+
+  ferro:
+    nome: Falta de ferro (Fe)
+    tabela:
+      onde: "Metade de cima da planta"
+      comeco: "Amarelo leve nas bordas, perto da base da folha"
+      avanca: "Folhas novas amarelas com nervuras verdes; as de baixo continuam verdes"
+    porque: A folha nova fica amarela e as nervuras continuam verdes, enquanto as folhas de baixo seguem normais. Quase sempre é pH alto, e não falta de ferro no substrato.
+    fazer: Acerte o pH (na drenagem, de 5,5 a 6,5; na rega, perto de 5,8 a 6,2). Só depois pense em ferro quelatado.
+    confirmar: As folhas novas saem verdes depois de alguns dias com o pH certo.
+    link: /ph-ec/#faixas
+    fotos:
+      - src: /assets/img/wiki/deficiencia-ferro.jpg
+        alt: Folhas novas do estudo verde-claras, com as nervuras mais escuras
+        estudo: cockson
+
+  manganes:
+    nome: Falta de manganês (Mn)
+    tabela:
+      onde: "Topo e meio da planta"
+      comeco: "Amarelo vivo entre as nervuras, formando uma rede"
+      avanca: "Rede bem marcada e pontinhos cor de palha"
+    porque: Folhas do topo e do meio com amarelo vivo entre as nervuras, formando uma rede, e depois pontinhos cor de palha. Parece muito com a falta de ferro.
+    fazer: Acerte o pH e use um adubo completo, com micronutrientes. Sem análise de folha, é difícil separar dos outros micronutrientes.
+    confirmar: As folhas novas saem sem a rede amarela.
+    link: /deficiencias/#sintoma-por-nutriente
+    fotos:
+      - src: /assets/img/wiki/deficiencia-manganes.jpg
+        alt: Folha do estudo verde-clara, com as nervuras formando uma rede mais escura
+        estudo: cockson
+
+  zinco:
+    nome: Falta de zinco (Zn)
+    tabela:
+      onde: "Folhas novas e que estão abrindo"
+      comeco: "Bordas amarelas"
+      avanca: "Áreas mortas irregulares, cor de palha, nas bordas"
+    porque: Folhas novas com as bordas amarelas e, depois, áreas mortas cor de palha nas bordas.
+    fazer: Acerte o pH e use um adubo completo, com micronutrientes.
+    confirmar: As bordas das folhas novas saem normais.
+    link: /deficiencias/#sintoma-por-nutriente
+    fotos:
+      - src: /assets/img/wiki/deficiencia-zinco.jpg
+        alt: Folhas do estudo com as bordas amarelas e pontinhos mortos
+        estudo: cockson
+
+  cobre:
+    nome: Falta de cobre (Cu)
+    tabela:
+      onde: "Folhas novas e que estão abrindo"
+      comeco: "Planta pequena, base das folhas estreita, amarelado leve"
+      avanca: "Folhas murchas, deformadas e curvadas para baixo"
+    porque: Planta pequena, folhas novas com a base estreita, amareladas, murchas e curvadas para baixo. É rara.
+    fazer: Acerte o pH e use um adubo completo, com micronutrientes.
+    confirmar: As folhas novas abrem normalmente.
+    link: /deficiencias/#sintoma-por-nutriente
+    fotos:
+      - src: /assets/img/wiki/deficiencia-cobre.jpg
+        alt: Topo de planta do estudo com folhas novas murchas, retorcidas e amareladas
+        estudo: cockson
+
+  boro:
+    nome: Falta de boro (B)
+    tabela:
+      onde: "Pontas dos galhos e folhas novas"
+      comeco: "Planta pequena, folíolos novos menores e estreitos"
+      avanca: "Folhas muito deformadas, bordas mortas, ponta do galho morre, planta murcha"
+    porque: Folíolos novos pequenos, estreitos e muito deformados; a ponta do galho morre e a planta murcha. É rara.
+    fazer: Acerte o pH, regue de forma regular e use um adubo completo, com micronutrientes.
+    confirmar: Os brotos novos crescem normais.
+    link: /deficiencias/#sintoma-por-nutriente
+    fotos:
+      - src: /assets/img/wiki/deficiencia-boro.jpg
+        alt: Galhos do estudo com folhas novas deformadas e amareladas
+        estudo: cockson
+
+  ph:
+    nome: pH fora da faixa (travamento)
+    procura_foto: "false  # não tem uma cara própria: imita as outras deficiências"
+    porque: Com o pH errado, a raiz não consegue absorver nutrientes que estão no substrato, e a planta mostra sintomas de deficiência, muitas vezes de vários nutrientes ao mesmo tempo. É a causa mais comum no sub.
+    fazer: Meça o pH do que sai pelo fundo do vaso e o da rega. Na drenagem, a faixa é de 5,5 a 6,5, para qualquer substrato; na rega, mire perto de 5,8 a 6,2. Corrija antes de mexer no adubo.
+    confirmar: Com o pH certo, o sintoma para de avançar em alguns dias.
+    link: /ph-ec/#faixas
+
+  excesso-sais:
+    nome: Excesso de adubo (queima)
+    porque: Sais demais na raiz queimam primeiro as pontinhas e as bordas das folhas, e a planta costuma estar verde-escura. Aumentar a dose para "corrigir" piora.
+    fazer: Meça a EC do que sai pelo fundo. Se estiver bem acima da rega, regue com água pura (ou adubo fraco) até escorrer bastante, e baixe a dose.
+    confirmar: As folhas novas saem sem as pontas queimadas.
+    link: /deficiencias/#excessos
+    fotos:
+      - src: /assets/img/wiki/excesso-sais-0je5c7i8zbbh1.jpg
+        alt: Folha verde-escura com as bordas dos folíolos queimadas
+        credito: u/PiccoloPuzzled3965
+        credito_url: https://www.reddit.com/user/PiccoloPuzzled3965
+
+  excesso-n:
+    nome: Excesso de nitrogênio
+    porque: Folhas muito escuras e brilhantes, com as pontas viradas para baixo, como uma garra. Comum com adubo de vegetativo forte, ou na floração.
+    fazer: Baixe a dose ou troque para um adubo de floração. Regue com água pura uma vez se a EC da drenagem estiver alta.
+    confirmar: As folhas novas saem com o verde normal e retas.
+    link: /deficiencias/#excessos
+
+  excesso-micro:
+    nome: Excesso de manganês ou de boro
+    porque: No estudo, o excesso desses dois apareceu como bordas das folhas de baixo amarelando e depois morrendo, parecido com a falta de potássio. Acontece com adubo concentrado demais ou água com muito ferro e manganês.
+    fazer: Regue com água pura até escorrer e baixe a dose. Meça a EC da drenagem.
+    confirmar: O sintoma não aparece nas folhas novas.
+    link: /deficiencias/#excessos
+    fotos:
+      - src: /assets/img/wiki/deficiencia-excesso-manganes.jpg
+        alt: Folha do estudo com a borda larga seca, cor de palha, e o centro verde
+        estudo: cockson
+      - src: /assets/img/wiki/deficiencia-excesso-boro.jpg
+        alt: Folha do estudo com as bordas amarelas e secas e as nervuras verdes
+        estudo: cockson
+
+  rega-excesso:
+    nome: Rega demais
+    porque: Substrato sempre molhado deixa a raiz sem ar. A planta fica caída, com as folhas firmes mas viradas para baixo, e amarela de baixo para cima.
+    fazer: Espere o vaso ficar leve antes de regar de novo. Confira se a água escorre pelo fundo.
+    confirmar: A planta levanta as folhas em um ou dois dias depois que o vaso seca um pouco.
+    link: /rega/#excesso-ou-falta-de-água
+
+  rega-falta:
+    nome: Falta de água
+    porque: As folhas ficam moles e murchas, e o vaso está leve e seco. Melhora poucas horas depois da rega.
+    fazer: Regue até escorrer pelo fundo. Em vaso pequeno e com calor, pode ser preciso regar todo dia.
+    confirmar: A planta se recupera em poucas horas.
+    link: /rega/#excesso-ou-falta-de-água
+
+  luz:
+    nome: Luz forte ou perto demais
+    porque: Só as folhas mais perto da lâmpada amarelam, ficam esbranquiçadas ou queimam, e as de baixo estão normais. Parece deficiência, mas segue a distância da luz.
+    fazer: Suba a luminária ou baixe a potência. Confira a distância recomendada e, se tiver, o PPFD no topo.
+    confirmar: As folhas novas do topo saem verdes.
+    link: /estresse/#os-sintomas
+    fotos:
+      - src: /assets/img/wiki/estresse-luz-f4lj98ytm8zf1.jpg
+        alt: Plantas mais altas, perto da luz, com as folhas do topo amarelas e queimadas
+        credito: u/CaduCCCP
+        credito_url: https://www.reddit.com/user/CaduCCCP
+
+  calor:
+    nome: Calor
+    porque: As folhas dobram para cima, como uma canoa, para perder menos água, principalmente no topo. Na floração, as flores podem soltar torres de cálices (rabo de raposa).
+    fazer: Baixe a temperatura com mais exaustão, ventilação e a luz mais longe. Confira o termômetro na altura das plantas.
+    confirmar: As folhas voltam a ficar abertas quando a temperatura cai.
+    link: /estresse/#calor
+
+  fade:
+    nome: Fim do ciclo (normal)
+    porque: Nas últimas semanas, a planta tira os nutrientes das folhas para as flores, e as folhas de baixo e do meio amarelam e caem. É o desbotamento natural (fade), e não uma deficiência.
+    fazer: Não corrija nada se a colheita está a uma ou duas semanas. Tire as folhas secas de cima do substrato.
+    confirmar: As flores continuam engordando e o topo segue saudável.
+    link: /deficiencias/#antes-de-culpar-o-adubo
+    fotos:
+      - src: /assets/img/wiki/fim-flora-1x3l1ops4vqh1.jpg
+        alt: Planta no fim da floração com as flores cheias de resina e as folhas de baixo amarelas
+        credito: u/Extension-Gap430
+        credito_url: https://www.reddit.com/user/Extension-Gap430
+      - src: /assets/img/wiki/fim-flora-wbrkcnvs4vqh1.jpg
+        alt: Outra parte da mesma planta, com flores de pistilos alaranjados e as folhas mais baixas amarelas e murchas
+        credito: u/Extension-Gap430
+        credito_url: https://www.reddit.com/user/Extension-Gap430
+      - src: /assets/img/wiki/fim-flora-sla3if3t4vqh1.jpg
+        alt: Vaso com folhas amarelas caídas na borda
+        credito: u/Extension-Gap430
+        credito_url: https://www.reddit.com/user/Extension-Gap430
+
+  acaro:
+    nome: Ácaro
+    porque: Pontinhos claros espalhados nas folhas, como furinhos de agulha. Embaixo da folha, podem aparecer bichinhos minúsculos e teias finas. É praga, não deficiência.
+    fazer: Olhe embaixo das folhas com a lupa. Veja como controlar na página de pragas.
+    confirmar: Com a lupa, você vê os ácaros ou os ovos embaixo da folha.
+    link: /pragas-comuns/#como-identificar
+    fotos:
+      - src: /assets/img/wiki/acaro-2jm94va6h4dg1.jpg
+        alt: Folha coberta de pontinhos amarelo-claros bem juntos
+        credito: u/Appropriate-Elk8448
+        credito_url: https://www.reddit.com/user/Appropriate-Elk8448
+
+  tripes:
+    nome: Tripes
+    porque: Manchas prateadas e brilhantes, como arranhões, com pontinhos pretos (as fezes do inseto). É praga, não deficiência.
+    fazer: Olhe embaixo das folhas e use armadilha adesiva azul. Veja como controlar na página de pragas.
+    confirmar: Aparecem insetos finos e compridos na armadilha ou embaixo das folhas.
+    link: /pragas-comuns/#como-identificar
+    fotos:
+      - src: /assets/img/wiki/tripes-fbi8tya4ytjg1.jpg
+        alt: Folha com grandes manchas prateadas espalhadas
+        credito: u/Reispk
+        credito_url: https://www.reddit.com/user/Reispk
+
+  oidio:
+    nome: Oídio (fungo)
+    porque: Manchas de pó branco, como farinha, que se espalham pelas folhas. Clima úmido e morno favorece.
+    fazer: Retire as folhas atacadas, baixe a umidade e aumente o ar. No vegetativo, dá para usar um preventivo de baixo risco.
+    confirmar: O pó sai quando passado o dedo, e volta a aparecer se a umidade continuar alta.
+    link: /fungos/#oídio
+    fotos:
+      - src: /assets/img/wiki/oidio.jpg
+        alt: Folha de abóbora coberta de pó branco, o mesmo que aparece na cannabis
+        credito: Dmitry Brant, CC BY-SA 4.0, via Wikimedia Commons
+        credito_url: https://commons.wikimedia.org/wiki/File:Powdery_mildew_9.jpg

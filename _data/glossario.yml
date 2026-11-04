@@ -1,0 +1,391 @@
+# Glossário único do projeto.
+# Usado em dois lugares:
+#   1. A página /glossario/ do site
+#   2. tools/pipeline.py, que injeta estes termos no prompt de tradução
+#      e confere se algum termo em inglês "escapou" na saída.
+#
+# Campos:
+#   en: termo em inglês (como aparece nas fontes)
+#   pt: tradução padrão a usar no site
+#   manter_original: true quando o termo em inglês é o mais usado no Brasil
+#                    (o tradutor mantém o original e explica na 1ª menção)
+#   definicao: explicação curta para a página do glossário
+#   variantes: outras grafias em inglês que devem receber a mesma tradução
+#   diagnostico: formas em português que o Diagnóstico (/diagnostico/) marca no texto,
+#                com a definição ao tocar
+
+termos:
+  - en: autoflower
+    pt: automática (autoflorescente)
+    variantes: [autoflowering, auto-flowering, autos]
+    definicao: Variedade que floresce pela idade, não pela duração da noite. Termina em cerca de 10 a 12 semanas desde a semente.
+
+  - en: photoperiod strain
+    pt: variedade fotoperiódica
+    variantes: [photoperiod, photo strain, photoperiod plant]
+    definicao: Variedade que só começa a florir quando as noites ficam longas o bastante (dias curtos).
+
+  - en: critical photoperiod
+    pt: fotoperíodo crítico
+    definicao: Duração do dia a partir da qual a planta fotoperiódica deixa de vegetar e começa a florir. Varia por genética, geralmente entre 13 h 30 e 15 h 30.
+
+  - en: vegetative stage
+    pt: fase vegetativa
+    variantes: [veg, vegging]
+    definicao: Fase de crescimento de folhas, galhos e raízes, antes da floração.
+
+  - en: flowering stage
+    pt: floração
+    variantes: [flowering, bloom]
+    definicao: Fase em que a planta forma as flores (buds).
+
+  - en: bud
+    pt: flor (bud)
+    variantes: [buds, cola, colas]
+    manter_original: true
+    definicao: A inflorescência feminina, parte colhida.
+
+  - en: trichomes
+    pt: tricomas
+    variantes: [trichome]
+    definicao: Glândulas resinosas na superfície das flores. A cor delas (transparente, leitosa, âmbar) indica o ponto de colheita.
+
+  - en: topping
+    pt: poda apical (topping)
+    variantes: [top, topped]
+    definicao: Cortar a ponta do caule principal para a planta abrir em duas ou mais pontas.
+
+  - en: low stress training
+    pt: treino de baixo estresse (LST)
+    variantes: [LST]
+    manter_original: true
+    definicao: Dobrar e amarrar galhos, sem cortar, para deixar a copa plana e iluminada por igual.
+
+  - en: defoliation
+    pt: desfolha
+    variantes: [defoliate, lollipopping]
+    definicao: Retirada seletiva de folhas para melhorar luz e ventilação.
+
+  - en: nutrient burn
+    pt: queima por excesso de nutrientes
+    variantes: [nute burn]
+    definicao: Pontas das folhas amarelas ou queimadas por excesso de fertilizante.
+
+  - en: flush
+    pt: lavagem de raízes (flush)
+    variantes: [flushing]
+    manter_original: true
+    definicao: Rega apenas com água, em maior volume, para remover sais acumulados no substrato.
+
+  - en: bud rot
+    pt: podridão de flor (botrytis)
+    variantes: [botrytis, gray mold]
+    definicao: Fungo que apodrece as flores de dentro para fora. Comum em clima úmido e chuvoso.
+
+  - en: powdery mildew
+    pt: oídio
+    variantes: [PM]
+    definicao: Fungo que forma um pó branco sobre as folhas.
+    diagnostico: [Oídio, oídio]
+
+  - en: hermaphrodite
+    pt: hermafrodita
+    variantes: [hermie, herm]
+    definicao: Planta que forma flores masculinas e femininas; pode polinizar a colheita.
+
+  - en: feminized seeds
+    pt: sementes feminizadas
+    variantes: [feminized, fem seeds]
+    definicao: Sementes que geram quase só plantas fêmeas.
+
+  - en: clone
+    pt: clone (estaca)
+    variantes: [clones, cutting, cuttings]
+    definicao: Muda feita a partir de um galho de outra planta, geneticamente idêntica a ela.
+
+  - en: curing
+    pt: cura
+    variantes: [cure]
+    definicao: Secagem lenta e controlada em pote fechado depois da colheita, que melhora sabor e aroma.
+
+  - en: grow tent
+    pt: estufa (grow tent)
+    variantes: [tent]
+    definicao: Barraca refletiva usada para cultivo indoor.
+
+  - en: grow light
+    pt: luminária de cultivo
+    variantes: [grow lights, LED grow light]
+    definicao: Lâmpada ou painel LED dimensionado para plantas.
+
+  - en: air pot
+    pt: vaso de ar (air pot)
+    variantes: [fabric pot, smart pot]
+    definicao: Vaso com paredes perfuradas ou de tecido que poda as raízes com o ar.
+
+  - en: Bacillus thuringiensis
+    pt: Bacillus thuringiensis (Bt)
+    variantes: [BT, Bt]
+    manter_original: true
+    definicao: Bactéria usada como inseticida biológico contra lagartas.
+
+  - en: insecticidal soap
+    pt: sabão inseticida
+    definicao: Sabão potássico diluído que mata insetos de corpo mole por contato.
+
+  - en: growing degree days
+    pt: graus-dia
+    variantes: [GDD]
+    definicao: Soma do calor acumulado ao longo do ciclo, usada para estimar quando a planta completa cada fase.
+
+  - en: electrical conductivity
+    pt: condutividade elétrica (EC)
+    variantes: [EC, TDS]
+    manter_original: true
+    definicao: Medida da quantidade de sais (adubo) dissolvidos na água, em mS/cm. Alguns aparelhos mostram em ppm.
+    diagnostico: [EC]
+
+  - en: cotyledons
+    pt: cotilédones
+    variantes: [cotyledon, seed leaves]
+    definicao: As duas primeiras folhinhas arredondadas da muda, que já vêm na semente.
+
+  - en: internode
+    pt: entrenó
+    variantes: [internodes, node spacing]
+    definicao: A distância entre dois nós do caule. Entrenós longos costumam indicar pouca luz.
+
+  - en: pistil
+    pt: pistilo
+    variantes: [pistils, hairs]
+    definicao: Os "pelinhos" das flores femininas. Começam brancos e escurecem conforme a flor amadurece.
+
+  - en: calyx
+    pt: cálice
+    variantes: [calyxes]
+    definicao: A pequena estrutura em forma de gota que forma a flor feminina e de onde saem os pistilos.
+    diagnostico: [cálices, cálice]
+
+  - en: phenotype
+    pt: fenótipo
+    variantes: [pheno, phenos]
+    definicao: Cada versão de planta que nasce de uma mesma variedade, com altura, aroma e produção próprios.
+
+  - en: stretch
+    pt: estiramento
+    definicao: O crescimento rápido em altura nas primeiras semanas de floração.
+
+  - en: mother plant
+    pt: planta-mãe
+    variantes: [mother, mom]
+    definicao: Planta fotoperiódica mantida no vegetativo para fornecer galhos para clones.
+
+  - en: cannabinoid
+    pt: canabinoide
+    variantes: [cannabinoids]
+    definicao: Substâncias produzidas nos tricomas, como THC, CBD, CBG e CBN.
+
+  - en: terpene
+    pt: terpeno
+    variantes: [terpenes, terps]
+    definicao: Compostos aromáticos que dão o cheiro e o sabor das flores, como mirceno, limoneno e pineno.
+
+  - en: decarboxylation
+    pt: descarboxilação
+    variantes: [decarb]
+    definicao: Conversão das formas ácidas (THCA, CBDA) em THC e CBD, causada pelo calor.
+
+  - en: deep water culture
+    pt: cultivo em água profunda (DWC)
+    variantes: [DWC]
+    manter_original: true
+    definicao: Sistema hidropônico em que as raízes ficam num balde com solução oxigenada por bomba de ar.
+
+  - en: hop latent viroid
+    pt: viroide latente do lúpulo (HLVd)
+    variantes: [HLVd]
+    manter_original: true
+    definicao: Viroide que deixa as plantas pequenas e menos produtivas; espalha-se por clones e ferramentas.
+
+  # Pragas
+  - en: spider mite
+    pt: ácaro-rajado
+    variantes: [spider mites, two-spotted spider mite]
+    definicao: Ácaro minúsculo que suga as folhas por baixo e deixa um pontilhado claro; com a infestação avançada, forma teias finas nas pontas.
+
+  - en: russet mite
+    pt: ácaro-do-bronzeamento
+    variantes: [russet mites, hemp russet mite]
+    definicao: Microácaro invisível a olho nu que deixa as folhas acinzentadas ou bronzeadas e retorcidas.
+
+  - en: broad mite
+    pt: ácaro-branco
+    variantes: [broad mites]
+    definicao: Microácaro invisível a olho nu que deforma e retorce os brotos e as folhas novas.
+
+  - en: predatory mites
+    pt: ácaros predadores
+    variantes: [predatory mite]
+    definicao: Ácaros que comem outros ácaros e pequenos insetos; usados no controle biológico.
+
+  - en: thrips
+    pt: tripes
+    definicao: Inseto pequeno e alongado (o adulto é preto) que deixa manchas prateadas nas folhas e pontinhos pretos de fezes embaixo delas.
+
+  - en: aphids
+    pt: pulgões
+    variantes: [aphid]
+    definicao: Insetos pequenos de corpo mole, verdes, pretos ou amarelados, que vivem em grupo nos brotos e deixam as folhas grudentas.
+
+  - en: whitefly
+    pt: mosca-branca
+    variantes: [whiteflies]
+    definicao: Mosquinha branca que vive embaixo das folhas e voa quando a planta é sacudida.
+
+  - en: fungus gnats
+    pt: mosquitinhos do substrato
+    variantes: [fungus gnat]
+    definicao: Mosquinhas pretas que voam sobre o substrato úmido; as larvas comem raízes de mudas.
+
+  - en: caterpillars
+    pt: lagartas
+    variantes: [caterpillar, budworms, budworm]
+    definicao: Larvas de mariposas que roem as folhas e entram nas flores, que apodrecem por dentro.
+
+  - en: ladybugs
+    pt: joaninhas
+    variantes: [ladybug, ladybirds, lady beetles]
+    definicao: Besouros que comem pulgões e outros insetos pequenos; aliados no controle biológico.
+
+  - en: lacewings
+    pt: crisopídeos
+    variantes: [lacewing, green lacewings]
+    definicao: Insetos cujas larvas comem pulgões, ovos e outras pragas pequenas.
+
+  # Doenças
+  - en: bud mold
+    pt: mofo nas flores
+    variantes: [mold, mould]
+    definicao: Fungos (Penicillium, Fusarium) que deixam mofo esverdeado ou esbranquiçado nas flores, às vezes só visível depois da secagem.
+
+  - en: root rot
+    pt: podridão de raiz
+    definicao: Raízes escuras, moles e com cheiro ruim, por fungos e oomicetos como Pythium; a planta murcha e amarela.
+
+  - en: damping-off
+    pt: tombamento
+    variantes: [damping off]
+    definicao: Doença de mudas em que o caule afina na base e a planta cai, quase sempre por excesso de água.
+
+  # Estresse e problemas
+  - en: light burn
+    pt: queima de luz
+    variantes: [light stress]
+    definicao: Folhas do topo amareladas e com manchas cor de palha, só perto da luminária.
+
+  - en: light bleaching
+    pt: branqueamento
+    variantes: [bleaching, photobleaching]
+    definicao: Folhas ou flores do topo que ficam brancas ou amarelo-claras por excesso de luz.
+
+  - en: heat stress
+    pt: estresse por calor
+    definicao: Folhas em concha, crescimento lento e flores soltas quando a temperatura no topo das plantas passa de cerca de 29 °C.
+
+  - en: taco leaves
+    pt: folhas em taco
+    variantes: [tacoing]
+    definicao: Folhas do topo com as bordas viradas para cima, como uma concha; sinal de calor ou luz forte demais.
+
+  - en: foxtail
+    pt: rabo de raposa
+    variantes: [foxtails, foxtailing]
+    definicao: Cálices empilhados em torres sobre a flor, com pistilos brancos que não param de nascer; por genética ou por luz e calor demais.
+    diagnostico: [rabo de raposa]
+
+  - en: fade
+    pt: senescência
+    variantes: [senescence, fading]
+    definicao: Amarelamento natural das folhas no fim da floração, quando a planta tira nutrientes delas para as flores.
+    diagnostico: [fade, desbotamento]
+
+  # Sexo da planta
+  - en: preflowers
+    pt: pré-flores
+    variantes: [preflower, pre-flowers, pre-flower]
+    definicao: As primeiras flores, que aparecem nos nós e mostram se a planta é macho ou fêmea.
+
+  - en: pollen sacs
+    pt: sacos de pólen
+    variantes: [pollen sac]
+    definicao: Bolinhas arredondadas, penduradas num cabinho, que guardam o pólen das flores masculinas.
+
+  - en: nanners
+    pt: bananas (nanicas)
+    variantes: [nanner, bananas]
+    definicao: Estruturas masculinas amarelas e alongadas que surgem no meio das flores de uma hermafrodita e soltam pólen sem precisar abrir.
+
+  - en: stipule
+    pt: estípula
+    variantes: [stipules]
+    definicao: Pontinha verde e rígida na base do talo de cada folha; toda planta tem, e por isso não indica o sexo.
+
+  - en: leaflet
+    pt: folíolo
+    definicao: Cada uma das "pontas" da folha da cannabis. Uma folha grande tem de 5 a 9 folíolos, todos saindo do mesmo ponto.
+    diagnostico: [folíolos, folíolo]
+
+  - en: leaf vein
+    pt: nervura
+    variantes: [veins, leaf veins]
+    definicao: Os "fios" que atravessam a folha e levam água e nutrientes. A nervura central é a mais grossa, no meio de cada folíolo.
+    diagnostico: [nervuras, nervura]
+
+  - en: necrosis
+    pt: necrose
+    definicao: Parte da folha que morreu e secou, cor de palha ou marrom. Não volta a ficar verde.
+    diagnostico: [necrose]
+
+  - en: runoff
+    pt: drenagem
+    definicao: A água que escorre pelo fundo do vaso depois da rega. Medir o pH e a EC dela mostra o que está acontecendo dentro do substrato.
+    diagnostico: [drenagem]
+
+  - en: ppm
+    pt: ppm
+    manter_original: true
+    definicao: Partes por milhão. Em nutrição, é o mesmo que miligramas por litro (mg/L) de um nutriente na água. Alguns medidores de EC também mostram a leitura em ppm, numa escala própria.
+    diagnostico: [ppm]
+
+  - en: Cal-Mag
+    pt: Cal-Mag
+    manter_original: true
+    definicao: Suplemento de cálcio e magnésio, usado com água de chuva ou de osmose, em fibra de coco e quando falta um dos dois.
+    diagnostico: [Cal-Mag]
+
+  - en: chelated
+    pt: quelatado
+    variantes: [chelate]
+    definicao: Nutriente "embrulhado" numa molécula que o mantém disponível para a raiz numa faixa maior de pH. Comum no ferro (ferro quelatado).
+    diagnostico: [quelatado]
+
+# Conversões que o tradutor deve aplicar sempre
+conversoes:
+  - de: "°F"
+    para: "°C"
+    regra: "(F − 32) × 5/9, arredondado ao inteiro"
+  - de: "gallon"
+    para: "litros"
+    regra: "1 galão americano = 3,8 L (arredonde: vaso de 5 gal ≈ 19 L)"
+  - de: "inch"
+    para: "cm"
+    regra: "1 pol = 2,54 cm"
+  - de: "foot"
+    para: "cm ou m"
+    regra: "1 pé = 30 cm"
+  - de: "ounce"
+    para: "gramas"
+    regra: "1 oz = 28 g"
+  - de: "pound"
+    para: "gramas ou kg"
+    regra: "1 lb = 454 g"

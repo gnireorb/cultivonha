@@ -1,0 +1,63 @@
+# Calculadora da conta de luz (_includes/calculadora-energia.html, assets/js/calculadora-energia.js).
+#
+# aparelhos: potência típica (W) e quanto tempo fica ligado: horas: luz (segue o fotoperíodo
+# de cada fase) ou um número de horas por dia. Potências iguais às de Segurança elétrica.
+# bandeiras: acréscimo por kWh, igual à tabela da página Conta de luz (Aneel).
+
+padrao:
+  tarifa: 1.00
+  veg_semanas: 4
+  veg_horas: 18
+  flor_semanas: 9
+  flor_horas: 12
+
+aparelhos:
+  - id: led
+    nome: Luminária (LED)
+    curto: Luz
+    watts: 240
+    horas: luz
+  - id: exaustor
+    nome: Exaustor
+    curto: Exaustor
+    watts: 25
+    horas: 24
+  - id: ventilador
+    nome: Ventilador de clipe
+    curto: Ventilador
+    watts: 15
+    horas: 24
+  - id: umidificador
+    nome: Umidificador
+    curto: Umidificador
+    watts: 30
+    horas: 12
+  - id: desumidificador
+    nome: Desumidificador pequeno
+    curto: Desumidificador
+    watts: 200
+    horas: 12
+  - id: ar
+    nome: Ar-condicionado
+    curto: Ar-condicionado
+    watts: 900
+    horas: 8
+  - id: outro
+    nome: Outro aparelho
+    curto: Outro
+    watts: 50
+    horas: 24
+
+bandeiras:
+  - id: verde
+    nome: Verde
+    acrescimo: 0
+  - id: amarela
+    nome: Amarela
+    acrescimo: 0.01885
+  - id: vermelha1
+    nome: Vermelha patamar 1
+    acrescimo: 0.04463
+  - id: vermelha2
+    nome: Vermelha patamar 2
+    acrescimo: 0.07877

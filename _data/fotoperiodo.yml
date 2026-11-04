@@ -1,0 +1,87 @@
+# Gerado por tools/fotoperiodo.py. Não edite à mão; rode o script de novo.
+meses: [jan, fev, mar, abr, mai, jun, jul, ago, set, out, nov, dez]
+cidades:
+  - nome: "Macapá"
+    lat: "0°"
+    mensal: ["12h07", "12h07", "12h07", "12h07", "12h07", "12h07", "12h07", "12h07", "12h07", "12h07", "12h07", "12h07"]
+    minimo: "12h07"
+    maximo: "12h07"
+    maximo_crepusculo: "12h52"
+  - nome: "Manaus"
+    lat: "3,1°S"
+    mensal: ["12h17", "12h13", "12h08", "12h03", "11h59", "11h57", "11h57", "12h01", "12h05", "12h10", "12h15", "12h18"]
+    minimo: "11h56"
+    maximo: "12h18"
+    maximo_crepusculo: "13h03"
+  - nome: "Fortaleza"
+    lat: "3,7°S"
+    mensal: ["12h19", "12h14", "12h08", "12h02", "11h57", "11h54", "11h55", "11h59", "12h05", "12h11", "12h17", "12h20"]
+    minimo: "11h54"
+    maximo: "12h20"
+    maximo_crepusculo: "13h05"
+  - nome: "Recife"
+    lat: "8,1°S"
+    mensal: ["12h32", "12h22", "12h09", "11h56", "11h45", "11h39", "11h41", "11h50", "12h03", "12h16", "12h29", "12h35"]
+    minimo: "11h39"
+    maximo: "12h35"
+    maximo_crepusculo: "13h21"
+  - nome: "Salvador"
+    lat: "13,0°S"
+    mensal: ["12h49", "12h31", "12h11", "11h49", "11h32", "11h22", "11h25", "11h40", "12h01", "12h22", "12h42", "12h53"]
+    minimo: "11h22"
+    maximo: "12h53"
+    maximo_crepusculo: "13h40"
+  - nome: "Cuiabá"
+    lat: "15,6°S"
+    mensal: ["12h57", "12h37", "12h12", "11h46", "11h24", "11h12", "11h17", "11h35", "11h59", "12h25", "12h50", "13h03"]
+    minimo: "11h12"
+    maximo: "13h03"
+    maximo_crepusculo: "13h51"
+  - nome: "Brasília"
+    lat: "15,8°S"
+    mensal: ["12h58", "12h37", "12h12", "11h45", "11h23", "11h12", "11h16", "11h34", "11h59", "12h26", "12h50", "13h03"]
+    minimo: "11h11"
+    maximo: "13h04"
+    maximo_crepusculo: "13h52"
+  - nome: "Belo Horizonte"
+    lat: "19,9°S"
+    mensal: ["13h13", "12h46", "12h14", "11h39", "11h11", "10h56", "11h01", "11h25", "11h57", "12h31", "13h03", "13h19"]
+    minimo: "10h55"
+    maximo: "13h20"
+    maximo_crepusculo: "14h09"
+  - nome: "Rio de Janeiro"
+    lat: "22,9°S"
+    mensal: ["13h24", "12h52", "12h15", "11h35", "11h02", "10h44", "10h51", "11h18", "11h56", "12h35", "13h12", "13h32"]
+    minimo: "10h43"
+    maximo: "13h32"
+    maximo_crepusculo: "14h23"
+  - nome: "São Paulo"
+    lat: "23,6°S"
+    mensal: ["13h26", "12h54", "12h16", "11h34", "11h00", "10h42", "10h48", "11h17", "11h56", "12h36", "13h14", "13h34"]
+    minimo: "10h41"
+    maximo: "13h35"
+    maximo_crepusculo: "14h26"
+  - nome: "Curitiba"
+    lat: "25,4°S"
+    mensal: ["13h33", "12h58", "12h17", "11h31", "10h54", "10h34", "10h41", "11h12", "11h55", "12h39", "13h20", "13h42"]
+    minimo: "10h33"
+    maximo: "13h43"
+    maximo_crepusculo: "14h35"
+  - nome: "Florianópolis"
+    lat: "27,6°S"
+    mensal: ["13h42", "13h03", "12h18", "11h28", "10h47", "10h24", "10h32", "11h07", "11h54", "12h42", "13h28", "13h52"]
+    minimo: "10h24"
+    maximo: "13h53"
+    maximo_crepusculo: "14h46"
+  - nome: "Porto Alegre"
+    lat: "30,0°S"
+    mensal: ["13h53", "13h09", "12h19", "11h24", "10h38", "10h13", "10h22", "11h00", "11h52", "12h46", "13h36", "14h04"]
+    minimo: "10h12"
+    maximo: "14h05"
+    maximo_crepusculo: "15h00"
+  - nome: "Chuí/RS"
+    lat: "33,7°S"
+    mensal: ["14h09", "13h19", "12h21", "11h17", "10h24", "9h56", "10h06", "10h50", "11h50", "12h52", "13h51", "14h22"]
+    minimo: "9h55"
+    maximo: "14h23"
+    maximo_crepusculo: "15h22"

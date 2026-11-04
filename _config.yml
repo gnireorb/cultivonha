@@ -1,0 +1,68 @@
+title: r/Cultivonha
+tagline: Wiki da comunidade brasileira de cultivo caseiro
+description: >-
+  A wiki do r/Cultivonha: equipamentos, luz, clima da estufa, sementes, pragas,
+  colheita e legislação, escrito pela comunidade e adaptado ao Brasil.
+lang: pt-BR
+locale: pt_BR
+url: "https://cultivonha.wiki" # usado nos links compartilhados (og:image, og:url), no feed e no sitemap
+baseurl: ""
+timezone: America/Sao_Paulo
+
+author:
+  name: Comunidade r/Cultivonha
+
+# Imagem usada nos links compartilhados (Reddit, WhatsApp, Telegram) e logo para buscadores
+logo: /assets/icons/icon-512.png
+
+subreddit: Cultivonha
+reddit_url: https://www.reddit.com/r/Cultivonha/
+tema_politico_ate: "2026-11-30"
+
+# Endereço do repositório no GitHub, para o link "Sugerir uma correção" em cada página.
+repositorio: "https://github.com/gnireorb/cultivonha"
+
+collections:
+  # Páginas importadas da wiki do Reddit (tools/importar_wiki_reddit.py)
+  wiki:
+    output: true
+    permalink: /:path/
+
+defaults:
+  - scope: { path: "", type: wiki }
+    values:
+      layout: wiki
+      aviso_legal: false
+  - scope: { path: "" }
+    values:
+      layout: default
+      image: /assets/icons/social-card.png
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  auto_ids: true
+  toc_levels: 2..3
+  # Mantém "--" como está: a ABNT usa "[20--]" para datas incertas
+  typographic_symbols: { ndash: "--" }
+
+# O índice da busca (Pagefind) é gerado depois do build; o `jekyll serve` não deve apagá-lo
+keep_files:
+  - pagefind
+
+exclude:
+  - README.md
+  - assets/img/caso/registro.json
+  - Gemfile
+  - Gemfile.lock
+  - tools/
+  - .gitignore
+  - .idea/
+  - .jekyll-cache/
+  - .github/
+  - .git/

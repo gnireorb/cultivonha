@@ -1,0 +1,69 @@
+# Produtos da calculadora de dose (_includes/calculadora-dose.html, assets/js/calculadora-dose.js).
+#
+# dose: mínima, padrão e máxima, por litro de água (g ou mL, conforme `unidade`).
+# fornece: o que cada 1 g (ou 1 mL) por litro entrega à água, em mg/L (ppm), pela composição do sal.
+# referencia: o elemento principal comparado com um estudo (valor da solução completa e, se houver, o excesso).
+# grupo: produtos de grupos que reagem entre si não devem ir no mesmo concentrado (veja `avisos`).
+# Mantenha as doses iguais às da página Deficiências (Cal-Mag na prática e Potássio na prática).
+
+fontes:
+  llewellyn:
+    texto: "Llewellyn et al., 2023"
+    url: "https://doi.org/10.3390/plants12030422"
+    sobre: "solução completa usada na floração"
+  saloner:
+    texto: "Saloner, Sacks e Bernstein, 2019"
+    url: "https://doi.org/10.3389/fpls.2019.01369"
+    sobre: "excessivo para uma das variedades"
+
+produtos:
+  - id: sulfato-potassio
+    nome: Sulfato de potássio
+    curto: Potássio
+    unidade: g
+    dose: { min: 0.15, padrao: 0.2, max: 0.35 }
+    fornece: { K: 449, S: 184 }
+    referencia: { elemento: K, valor: 140, fonte: llewellyn, excesso: 240, fonte_excesso: saloner }
+    grupo: sulfato
+    nota: "Uma rega por semana. Comece pela dose menor: excesso de potássio trava o magnésio e o cálcio."
+
+  - id: sulfato-magnesio
+    nome: Sulfato de magnésio (sal amargo)
+    curto: Magnésio
+    unidade: g
+    dose: { min: 0.4, padrao: 0.5, max: 1 }
+    fornece: { Mg: 99, S: 130 }
+    referencia: { elemento: Mg, valor: 40, fonte: llewellyn }
+    grupo: sulfato
+    nota: "Na rega. Planta pequena: comece com 0,4 a 0,5 g por litro."
+
+  - id: sulfato-magnesio-folha
+    nome: Sulfato de magnésio, borrifado nas folhas
+    curto: Magnésio na folha
+    unidade: g
+    dose: { min: 1, padrao: 1, max: 2 }
+    grupo: sulfato
+    so_folha: true
+    agua: borrifador
+    nota: "Borrife com a luz apagada e longe das flores. Prática comum entre cultivadores, sem estudo específico em cannabis."
+
+  - id: nitrato-calcio
+    nome: Nitrato de cálcio
+    curto: Cálcio
+    unidade: g
+    dose: { min: 0.3, padrao: 0.5, max: 0.5 }
+    fornece: { Ca: 190, N: 155 }
+    referencia: { elemento: Ca, valor: 130, fonte: llewellyn }
+    grupo: calcio
+    nota: "Também fornece nitrogênio: no fim da floração, prefira um Cal-Mag. Dissolva separado dos sulfatos."
+
+  - id: extrato-algas
+    nome: Extrato de algas (líquido)
+    curto: Algas
+    unidade: mL
+    dose: { min: 1, padrao: 1, max: 2 }
+    nota: "A concentração muda de marca para marca: se o rótulo indicar outra dose, use a do rótulo."
+
+avisos:
+  calcio-sulfato: "Nitrato de cálcio e sulfatos (de magnésio ou de potássio) reagem e formam gesso, que não dissolve. Não misture os pós nem soluções concentradas: dissolva um de cada vez na água de rega, já no volume final, mexendo bem entre um e outro. Ou dê em regas separadas."
+  folha-rega: "O sulfato de magnésio para borrifar é uma solução à parte, no borrifador: não junte com a água de rega."

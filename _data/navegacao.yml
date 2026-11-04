@@ -1,0 +1,110 @@
+# Menu lateral do site: seções e páginas, na ordem em que aparecem.
+#
+# Cada seção tem uma cor própria (usada no marcador do menu e no índice da wiki).
+# `paginas` aceita o endereço de qualquer página do site: wiki, guia ou página solta.
+# Páginas da wiki que não estiverem aqui aparecem sozinhas em "Outras páginas".
+#
+# Cores disponíveis: musgo, led, ar, terra, folha, broto, alerta, tricoma, sol, ardosia
+# Para criar uma seção: copie um bloco, troque id, nome, cor e paginas.
+
+secoes:
+  - id: comece
+    nome: Comece aqui
+    cor: musgo
+    paginas:
+      - /indice/
+      - /primeiro-cultivo/
+      - /estufabasica/
+      - /ferramentas/
+      - /perguntas-frequentes/
+      - /diario-de-cultivo/
+      - /growweedeasy/
+
+  - id: equipamentos
+    nome: Equipamentos e luz
+    cor: led
+    paginas:
+      - /equipamentos/
+      - /luz/
+      - /seguranca-eletrica/
+      - /custo-energia/
+      - /automacao/
+
+  - id: clima
+    nome: Clima da estufa
+    cor: ar
+    paginas:
+      - /temperatura_umidade/
+      - /vpdchart/
+      - /ventilacao/
+
+  - id: plantio
+    nome: Sementes e mudas
+    cor: terra
+    paginas:
+      - /sementes/
+      - /geneticas/
+      - /automaticas/
+      - /germinacao/
+      - /transplante/
+      - /clones/
+      - /planta-mae/
+      - /polinizacao/
+
+  - id: substrato
+    nome: Substrato e água
+    cor: folha
+    paginas:
+      - /substrato/
+      - /solovivo/
+      - /microrganismos/
+      - /fibra-de-coco/
+      - /hidroponia/
+      - /rega/
+      - /agua/
+
+  - id: cuidados
+    nome: Vegetativo e nutrição
+    cor: broto
+    paginas:
+      - /vegetativo/
+      - /nutricao/
+      - /adubacao-organica/
+      - /ph-ec/
+      - /treinamento/
+
+  - id: problemas
+    nome: Pragas e problemas
+    cor: alerta
+    paginas:
+      - /pragasproblemas/
+      - /diagnostico/
+      - /deficiencias/
+      - /estresse/
+      - /pragas-comuns/
+      - /fungos/
+      - /dedetizacao/
+
+  - id: colheita
+    nome: Floração e colheita
+    cor: tricoma
+    paginas:
+      - /floracao/
+      - /sexagem/
+      - /colheita/
+      - /secagem-cura/
+      - /canabinoides-terpenos/
+      - /rendimento/
+
+  - id: outdoor
+    nome: Outdoor no clima Brasileiro
+    cor: sol
+    paginas:
+      - /cultivo-outdoor/
+
+  - id: lei
+    nome: Lei e direitos
+    cor: ardosia
+    paginas:
+      - /legalize/
+      - /cultivo-medicinal/

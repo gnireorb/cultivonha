@@ -1,0 +1,10 @@
+_site
+_includes
+_layouts
+_plugins
+assets
+.jekyll-cache
+.github
+.idea
+Gemfile
+Gemfile.lock
